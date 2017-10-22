@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Audio[0] Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="audio-player" id="ap">
+        <audio preload="metadata" id="audio" class="player">
+            <source src="media/Emotional Champ.mp3" type="audio/mp3">
+        </audio>
+        <div id="controls">
+            <div id="progress-bar" class="progress-bar">
+                <div id="playhead" class="playhead"></div>
+            </div>
+            <button type="button" id="btn-previous">Previous</button>
+            <button type="button" id="btn-play">Play</button>
+            <button type="button" id="btn-next">Next</button>
+        </div>
+        <ul id="playlist" class="playlist">
+            <li class="active"><a href="media/Emotional Champ.mp3" class="track">Emotional Champ</a></li>
+            <li><a href="media/Feel This.mp3" class="track">Feel This</a></li>
+            <li><a href="media/Butterflies.mp3" class="track">Butterflies</a></li>
+            <li><a href="media/Black Rebel Motorcycle Club.mp3" class="track">Black Rebel Motorcycle Club</a></li>
+            <li><a href="media/Forgive Me.mp3" class="track">Forgive Me</a></li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="player.js"></script>
+    <script type="text/javascript" src="control.js"></script>
+</body>
+
+</html>

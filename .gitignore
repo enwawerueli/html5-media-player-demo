@@ -1,0 +1,5 @@
+# exclude media files
+media/*
+
+# iclude the media folder
+!media/.gitkeep
