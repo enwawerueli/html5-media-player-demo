@@ -3,34 +3,55 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Audio[0] Player</title>
+    <title>Audio Player</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="audio-player" id="ap">
-        <audio preload="metadata" id="audio" class="player">
+        <p class="playlist-title"></p>
+        <audio preload="metadata" id="audio" class="audio">
             <source src="media/Emotional Champ.mp3" type="audio/mp3">
         </audio>
-        <div id="controls">
+        <div id="controls" class="controls">
+            <p class="track-title"></p>
+            <div class="timer"><span id="elapsed">00:00:00</span> / <span id="duration">00:00:00</span></div>
             <div id="progress-bar" class="progress-bar">
-                <div id="playhead" class="playhead"></div>
+                <div id="timeline" class="timeline"></div>
             </div>
-            <button type="button" id="btn-previous">Previous</button>
-            <button type="button" id="btn-play">Play</button>
-            <button type="button" id="btn-next">Next</button>
+            <button type="button" id="btn-shuffle" class="btn-control btn-shuffle inactive">
+                <img src="icons/media-control-shuffle.svg" alt="Shuffle">
+            </button>
+            <button type="button" id="btn-repeat" class="btn-control btn-repeat inactive">
+                <img src="icons/media-control-repeat.svg" alt="Repeat">
+            </button>
+            <button type="button" id="btn-previous" class="btn-control btn-previous">
+                <img src="icons/media-control-rewind.svg" alt="Previous">
+            </button>
+            <button type="button" id="btn-play" class="btn-control btn-play">
+                <img src="icons/media-control-play.svg" alt="Play">
+            </button>
+            <button type="button" id="btn-next" class="btn-control btn-next">
+                <img src="icons/media-control-foward.svg" alt="Next">
+            </button>
+            <button type="button" id="btn-mute" class="btn-control btn-mute">
+                <img src="icons/media-control-sound.svg" alt="Mute">
+            </button>
+            <input type="range" min="0" max="1.0" step="any" value="0.5" id="volume-bar" class="volume-bar">
         </div>
-        <ul id="playlist" class="playlist">
-            <li class="active"><a href="media/Emotional Champ.mp3" class="track">Emotional Champ</a></li>
-            <li><a href="media/Feel This.mp3" class="track">Feel This</a></li>
-            <li><a href="media/Butterflies.mp3" class="track">Butterflies</a></li>
-            <li><a href="media/Black Rebel Motorcycle Club.mp3" class="track">Black Rebel Motorcycle Club</a></li>
-            <li><a href="media/Forgive Me.mp3" class="track">Forgive Me</a></li>
-        </ul>
+        <div id="playlist" class="playlist">
+            <ul>
+                <li class="playlist-item active"><a href="media/Emotional Champ.mp3" class="track">Emotional Champ</a></li>
+                <li class="playlist-item"><a href="media/Feel This.mp3" class="track">Feel This</a></li>
+                <li class="playlist-item"><a href="media/Butterflies.mp3" class="track">Butterflies</a></li>
+                <li class="playlist-item"><a href="media/Black Rebel Motorcycle Club.mp3" class="track">Black Rebel Motorcycle Club</a></li>
+                <li class="playlist-item"><a href="media/Forgive Me.mp3" class="track">Forgive Me</a></li>
+            </ul>
+        </div>
     </div>
     <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="player.js"></script>
-    <script type="text/javascript" src="control.js"></script>
+    <script type="text/javascript" src="link.js"></script>
 </body>
 
 </html>

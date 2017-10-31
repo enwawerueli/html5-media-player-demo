@@ -7,11 +7,11 @@ $(document).ready(function() {
 
     $(document).on('click', 'a.track', function(e) {
         e.preventDefault();
-        load($(this));
+        load(this);
         play();
     });
 
-    $(audio).on('ended', function(e) {
+    audio.on('ended', function(e) {
         next();
     });
 
@@ -21,5 +21,12 @@ $(document).ready(function() {
 
     $(document).on('click', '#btn-next', function() {
         next();
+    });
+
+    $(document).on('click', '#btn-mute', function() {
+        mute();
+    });
+    $(document).on('click', '#btn-shuffle', function() {
+        shuffle();
     });
 });
