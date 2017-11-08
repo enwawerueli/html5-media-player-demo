@@ -1,5 +1,7 @@
 # exclude media files
 media/*
+.sass-cache/*
+stylesheets/.sass-cache/*
 
 # iclude the media folder
 !media/.gitkeep

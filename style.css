@@ -2,7 +2,7 @@
 {
     width: 600px;
     margin: auto;
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 1);
     background-color: rgba(0, 0, 0, .7);
     font-family: "Calibri";
 }
@@ -13,46 +13,6 @@
 .audio
 {
     width: 100%;
-}
-.playlist
-{
-    padding: 16px;
-    height: 240px;
-    overflow-y: auto;
-    background-image: url(icons/waves.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.playlist > ul
-{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-}
-.playlist::-webkit-scrollbar
-{
-    width: 6px;
-}
-.playlist::-webkit-scrollbar-thumb
-{
-    border-radius: 3px;
-    background-color: rgba(0, 0, 0, .7);
-}
-.playlist ul > li
-{
-    padding: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, .3);
-}
-.playlist-item.active > a,
-.timer
-{
-    color: rgba(255, 255, 255, .7);
-}
-.playlist-item > a
-{
-    text-decoration: none;
-    color: rgba(0, 0, 0, 1);
 }
 .progress-bar, .timeline, .preload
 {
@@ -66,7 +26,82 @@
 }
 .timeline
 {
+    width: 0px;
     background-image: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(0, 187, 255, 1));
+}
+.timer
+{
+    color: rgba(255, 255, 255, .7);
+}
+.timer .elapsed
+{
+    float: left;
+}
+.timer .duration
+{
+    float: right;
+}
+.control-group
+{
+    clear: both;
+}
+.btn-control
+{
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 3px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, .7);
+    box-shadow: 0 0 1px 2px rgba(0, 0, 0, .5);
+    box-sizing: content-box;
+    background-image: -webkit-linear-gradient(90deg, rgba(255, 255, 255, .5) 0%, rgba(0, 187, 255, 1) 50%, rgba(255, 255, 255, .5) 100%);
+    opacity: .9;
+    -webkit-transition: all .25s ease-in-out;
+}
+.btn-control:hover
+{
+    -webkit-transform: scale(1.1);
+    opacity: 1;
+}
+.btn-control.inactive
+{
+    background-image: -webkit-linear-gradient(90deg, rgba(255, 255, 255, .5) 0%, rgba(0, 0, 0, .5) 50%, rgba(255, 255, 255, .5) 100%);
+}
+.btn-play
+{
+    width: 30px;
+    height: 30px;
+}
+.btn-view,
+.btn-view > img,
+.btn-shuffle,
+.btn-shuffle > img,
+.btn-repeat,
+.btn-repeat > img,
+.btn-previous,
+.btn-previous > img,
+.btn-next,
+.btn-next > img,
+.btn-mute,
+.btn-mute > img
+{
+    width: 20px;
+    height: 20px;
+}
+.btn-view
+{
+    float: right;
+    background-image: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+.btn-view:hover
+{
+    background-color: rgba(0, 187, 255, 1);
+}
+.btn-view.minimize
+{
+    transform: rotate(-180deg);
 }
 .volume-bar
 {
@@ -87,45 +122,42 @@
     background-color:rgba(0, 187, 255, 1);
     border-radius: 50%;
 }
-.btn-control
+.playlist
 {
-    border: none;
-    border-radius: 50%;
-    padding: 5px;
-    margin: 5px;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, .7);
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, .5);
-    box-sizing: content-box;
-    background-image: -webkit-linear-gradient(90deg, rgba(255, 255, 255, .5) 0%, rgba(0, 187, 255, 1) 50%, rgba(255, 255, 255, .5) 100%);
-    opacity: .9;
-    -webkit-transition: all .25s ease-in-out;
+    padding: 16px;
+    height: 240px;
+    overflow-y: auto;
+    background-image: url(icons/waves.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.btn-control:hover
+.playlist::-webkit-scrollbar
 {
-    -webkit-transform: scale(1.1);
-    opacity: 1;
+    width: 6px;
 }
-.btn-control.inactive
+.playlist::-webkit-scrollbar-thumb
 {
-    background-image: -webkit-linear-gradient(90deg, rgba(255, 255, 255, .5) 0%, rgba(0, 0, 0, .5) 50%, rgba(255, 255, 255, .5) 100%);
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, .7);
 }
-.btn-play
+.playlist > ul
 {
-    width: 30px;
-    height: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
 }
-.btn-shuffle,
-.btn-shuffle > img,
-.btn-repeat,
-.btn-repeat > img,
-.btn-previous,
-.btn-previous > img,
-.btn-next,
-.btn-next > img,
-.btn-mute,
-.btn-mute > img
+.playlist ul > li
 {
-    width: 20px;
-    height: 20px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+}
+.playlist-item > a
+{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+}
+.playlist-item.active > a
+{
+    color: rgba(255, 255, 255, .7);
 }

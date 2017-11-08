@@ -1,0 +1,148 @@
+/*
+  Welcome to Compass.
+  In this file you should write your main styles. (or centralize your imports)
+  Import this file using the following HTML or equivalent:
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+
+@import "compass/reset"
+@import "compass/css3"
+@import "compass"
+
+$theme-color: #00BBFF
+$bg-color: rgba(#000, 0.7)
+
+.audio-player
+    width: 600px
+    margin: auto
+    border: 1px solid rgba(#000, 1)
+    background-color: $bg-color
+    font-family: "Calibri"
+
+.controls
+    padding: 16px
+
+.audio
+    width: 100%
+
+.progress-bar,
+.timeline,
+.preload
+    height: 10px
+    @include border-radius(5px)
+
+.progress-bar
+    width: 100%
+    background-color: rgba(#fff, 0.7)
+
+.timeline
+    width: 0px
+    @include background(linear-gradient(90deg, rgba(#fff, 1), rgba($theme-color, 1)))
+
+.timer
+    color: rgba(#fff, 0.7)
+    .elapsed
+        float: left
+    .duration
+        float: right
+
+.btn-control
+    border: none
+    border-radius: 50%
+    padding: 5px
+    margin: 3px
+    outline: none
+    border: 1px solid rgba(#000, 0.7)
+    @include box-shadow(0 0 1px 2px rgba(#000, 0.5))
+    @include box-sizing(content-box)
+    @include background(linear-gradient(0deg, rgba(#fff, 1) 0%, rgba($theme-color, 1) 50%, rgba(#fff, 1) 100%))
+    opacity: 0.9
+    @include transition(all .25s ease-in-out)
+
+    &:hover
+        @include transform(scale(1.1))
+        opacity: 1
+
+    &.default
+        @include background(linear-gradient(0deg, rgba(#fff, 0.5) 0%, rgba(#000, 0.5) 50%, rgba(#fff, 0.5) 100%))
+
+.btn-play
+    width: 30px
+    height: 30px
+
+.btn-shuffle,
+.btn-shuffle > img,
+.btn-repeat,
+.btn-repeat > img,
+.btn-previous,
+.btn-previous > img,
+.btn-next,
+.btn-next > img,
+.btn-mute,
+.btn-mute > img,
+.btn-view,
+.btn-view > img
+    width: 20px
+    height: 20px
+
+.btn-view
+    float: right
+    background-image: none
+    background-color: rgba(#000, 0)
+
+    &:hover
+        background-color: rgba($theme-color, 1)
+
+    &.minimize
+        @include transform(rotate(-180deg))
+
+.volume-bar
+    @include appearance(none)
+    height: 10px
+    width: 100%
+    outline: none
+    @include border-radius(5px)
+    margin: 10px auto
+    width: 75px
+    @include background(linear-gradient(90deg, rgba(#fff, 1), rgba($theme-color, 1)))
+
+.volume-bar::-webkit-slider-thumb
+    @include appearance(none)
+    width: 15px
+    height: 15px
+    background-color: rgba($theme-color, 1)
+    @include border-radius(50%)
+
+.playlist
+    padding: 16px
+    height: 240px
+    overflow-y: auto
+    background-image: url(../../bg/waves.svg)
+    background-repeat: no-repeat
+    background-size: cover
+
+    &::-webkit-scrollbar
+        width: 6px
+
+    &::-webkit-scrollbar-thumb
+        @include border-radius(3px)
+        background-color: rgba(#000, .7)
+
+    & > ul
+        list-style: none
+        margin: 0
+        padding: 0
+
+.playlist-item
+    padding: 10px
+    border-bottom: 1px solid rgba(#000, .3)
+
+    & > a
+        text-decoration: none
+        color: rgba(#000, 1)
+
+    &.active > a
+        color: rgba(#fff, .7)
+
+.clear
+    clear: both

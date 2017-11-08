@@ -1,3 +1,5 @@
+var view = $('#btn-view');
+
 var audio = $('#audio');
 
 var playlist = {};
@@ -5,6 +7,8 @@ var playlist = {};
     playlist.length = playlist.tracks.length - 1;
     playlist.index = 0;
     playlist.playing = $(playlist.tracks[playlist.index]);
+    playlist.shuffle = false;
+    playlist.loop = false;
 
 var controls = {};
     controls.progress = $('#progress-bar');
@@ -19,10 +23,6 @@ var controls = {};
     controls.shuffle = $('#btn-shuffle');
     controls.repeat = $('#btn-repeat');
     controls.mute = $('#btn-mute');
-
-var duration = 0.0;
-
-var shuffle = false;
 
 function load(track)
 {
@@ -40,33 +40,44 @@ function play()
         audio[0].play();
         controls.play.children('img').attr('src', path.replace(/play/i, 'pause'));
     } else {
-        audio[0].pause();
-        controls.play.children('img').attr('src', path.replace(/pause/i, 'play'));
+        pause();
     }
+}
+
+function pause()
+{
+    var path = controls.play.children('img').attr('src');
+    audio[0].pause();
+    controls.play.children('img').attr('src', path.replace(/pause/i, 'play'));
+}
+
+function stop()
+{
+    pause();
+    audio[0].currentTime = 0.0;
 }
 
 function next()
 {
-    var next;
-    if (playlist.index === playlist.length) {
-        next = playlist.tracks[0];
-    } else {
-        next = playlist.tracks[playlist.index + 1];
-    }
+    var next = playlist.index === playlist.length
+        ? playlist.tracks[0]
+        : playlist.tracks[playlist.index + 1];
     load(next);
     play();
 }
 
-function prev()
+function previous()
 {
-    var prev;
-    if (playlist.index === 0) {
-        prev = playlist.tracks[playlist.length];
-    } else {
-        prev = playlist.tracks[playlist.index - 1];
-    }
+    var prev = playlist.index === 0
+        ? playlist.tracks[playlist.length]
+        : playlist.tracks[playlist.index - 1];
     load(prev);
     play();
+}
+
+function autoPlay()
+{
+    playlist.loop ? next() : stop();
 }
 
 function seek()
@@ -81,14 +92,11 @@ function seekTo(e)
     var eventX = e.pageX;
     var progressX = controls.progress.offset().left;
     var progressWidth = controls.progress.width();
-    var width;
-    if (eventX > progressX + progressWidth) {
-        width = progressWidth;
-    } else if (e.pageX < progressX) {
-        width = 0;
-    } else {
-        width = (eventX - progressX);
-    }
+    var width = eventX > progressX + progressWidth
+        ? progressWidth
+        : e.pageX < progressX
+            ? 0
+            : eventX - progressX;
     audio[0].currentTime = audio[0].duration * (width / progressWidth);
 }
 
@@ -114,17 +122,39 @@ function mute()
     } else {
         controls.mute.children('img').attr('src', path.replace(/mute/i, 'sound'));
     }
-    controls.mute.toggleClass('inactive');
+    controls.mute.toggleClass('default');
 }
 
 function shuffle()
 {
-    shuffle = true;
+    playlist.shuffle = !playlist.shuffle;
+    if (playlist.shuffle) {
+        for (var i = playlist.length; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = playlist.tracks[i];
+            playlist.tracks[i] = playlist.tracks[j];
+            playlist.tracks[j] = temp;
+        }
+    } else {
+        playlist.tracks = $('a.track');
+    }
+    controls.shuffle.toggleClass('default');
+}
+
+function loop()
+{
+    playlist.loop = !playlist.loop;
+    controls.repeat.toggleClass('default');
+}
+
+function toggleView()
+{
+    $('#playlist').slideToggle();
+    view.toggleClass('minimize');
 }
 
 audio.on("loadedmetadata", function(e) {
-    duration = audio[0].duration;
-    controls.duration.text(secondsToTime(duration));
+    controls.duration.text(secondsToTime(audio[0].duration));
 });
 
 audio.on('timeupdate', seek);
@@ -132,7 +162,7 @@ audio.on('timeupdate', seek);
 // Make progress bar clickable
 controls.progress.on('click', seekTo);
 
-// Make playhead draggable
+// Make timeline draggable
 controls.timeline.on('mousedown', function(e){
     $(window).on('mousemove', seekTo);
     $(window).on('mouseup', function(){

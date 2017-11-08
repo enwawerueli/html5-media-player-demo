@@ -4,40 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Audio Player</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="stylesheets/css/screen.css">
 </head>
 
 <body>
-    <div class="audio-player" id="ap">
-        <p class="playlist-title"></p>
+    <div class="audio-player">
+        <button id="btn-view" class="btn-control btn-view">
+            <img src="icons/arrow-up.svg" alt="Minimize">
+        </button>
+        <p class="playlist-title clear"></p>
         <audio preload="metadata" id="audio" class="audio">
             <source src="media/Emotional Champ.mp3" type="audio/mp3">
         </audio>
         <div id="controls" class="controls">
             <p class="track-title"></p>
-            <div class="timer"><span id="elapsed">00:00:00</span> / <span id="duration">00:00:00</span></div>
             <div id="progress-bar" class="progress-bar">
                 <div id="timeline" class="timeline"></div>
             </div>
-            <button type="button" id="btn-shuffle" class="btn-control btn-shuffle inactive">
-                <img src="icons/media-control-shuffle.svg" alt="Shuffle">
-            </button>
-            <button type="button" id="btn-repeat" class="btn-control btn-repeat inactive">
-                <img src="icons/media-control-repeat.svg" alt="Repeat">
-            </button>
-            <button type="button" id="btn-previous" class="btn-control btn-previous">
-                <img src="icons/media-control-rewind.svg" alt="Previous">
-            </button>
-            <button type="button" id="btn-play" class="btn-control btn-play">
-                <img src="icons/media-control-play.svg" alt="Play">
-            </button>
-            <button type="button" id="btn-next" class="btn-control btn-next">
-                <img src="icons/media-control-foward.svg" alt="Next">
-            </button>
-            <button type="button" id="btn-mute" class="btn-control btn-mute">
-                <img src="icons/media-control-sound.svg" alt="Mute">
-            </button>
-            <input type="range" min="0" max="1.0" step="any" value="0.5" id="volume-bar" class="volume-bar">
+            <div id="timer" class="timer">
+                <span id="elapsed" class="elapsed">00:00:00</span>
+                <span id="duration" class="duration">00:00:00</span>
+            </div>
+            <div class="control-group clear">
+                <button type="button" id="btn-shuffle" class="btn-control btn-shuffle default">
+                    <img src="icons/media-control-shuffle.svg" alt="Shuffle">
+                </button>
+                <button type="button" id="btn-repeat" class="btn-control btn-repeat default">
+                    <img src="icons/media-control-repeat.svg" alt="Repeat">
+                </button>
+                <button type="button" id="btn-previous" class="btn-control btn-previous">
+                    <img src="icons/media-control-rewind.svg" alt="Previous">
+                </button>
+                <button type="button" id="btn-play" class="btn-control btn-play">
+                    <img src="icons/media-control-play.svg" alt="Play">
+                </button>
+                <button type="button" id="btn-next" class="btn-control btn-next">
+                    <img src="icons/media-control-foward.svg" alt="Next">
+                </button>
+                <button type="button" id="btn-mute" class="btn-control btn-mute">
+                    <img src="icons/media-control-sound.svg" alt="Mute">
+                </button>
+                <input type="range" min="0" max="1.0" step="any" value="0.5" id="volume-bar" class="volume-bar">
+            </div>
         </div>
         <div id="playlist" class="playlist">
             <ul>
@@ -49,9 +58,9 @@
             </ul>
         </div>
     </div>
-    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="player.js"></script>
-    <script type="text/javascript" src="link.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/link.js"></script>
 </body>
 
 </html>
